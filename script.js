@@ -5,22 +5,22 @@
 
 // console.log('Hello World');
 
-//Calculate temperature altitude
-const temperatures1 = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
-const temperatures2 = [
-  -13,
-  -5,
-  60,
-  -2,
-  'error',
-  9,
-  'error',
-  17,
-  15,
-  'error',
-  9,
-  -14,
-];
+// * Calculate temperature altitude
+// const temperatures1 = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+// const temperatures2 = [
+//   -13,
+//   -5,
+//   60,
+//   -2,
+//   'error',
+//   9,
+//   'error',
+//   17,
+//   15,
+//   'error',
+//   9,
+//   -14,
+// ];
 
 // 1) Understand the problem
 // - What is temperature amplitude? Ans: = range
@@ -32,9 +32,9 @@ const temperatures2 = [
 // - How to ignore errors?
 // - Find max and min values in temperatures array. REQUIRES RESEARCH! DONE
 // - Subtract one from the other. DONE
-//// - Find way to allow function to take two arrays. Perhaps two paramaters? Perhaps two arguments? Merge into one array then split up again?
+// // - Find way to allow function to take two arrays. Perhaps two paramaters? Perhaps two arguments? Merge into one array then split up again?
 
-// PROBLEM 1
+// * PROBLEM 1
 
 // const calcTempRange = function (temps) {
 //   let max = temps[0];
@@ -55,7 +55,7 @@ const temperatures2 = [
 
 // calcTempRange(temperatures1);
 
-// PROBLEM 2
+// * PROBLEM 2
 
 // const array1 = ['a', 'b', 'c'];
 // const array2 = ['d', 'e', 'f'];
@@ -86,8 +86,8 @@ const temperatures2 = [
 
 // calcTempRangeNew(temperatures1, temperatures2);
 
-// Debugging
-// PROBLEM 1
+// * Debugging
+// * PROBLEM 1
 // const measureKelvin = function () {
 //   const measurement = {
 //     type: 'temp',
@@ -105,20 +105,20 @@ const temperatures2 = [
 // console.error > turns whatever you input into an error
 // console.table > turns whatever you input into a table showing the type of values for each input.
 
-// IDENTIFY
+// * IDENTIFY
 // The console returned the concatonated string value.
 // Console logging 'measurement.value' results in the correct value but console.logging 'measurement' shows that the type of value for 'value' is a string.
 
-// FIND
+// * FIND
 // Line 98/99
 
-// FIX
+// * FIX
 // measurement.value becomes parseInt(measurement.value) OR better yet, parseInt the value of the 'value' key to be DRY. I can also use Number()
 
-// PREVENT
+// * PREVENT
 // No repeat appareances. Make sure to ParseInt any value from prompts.
 
-// PROBLEM 2 >>> Using a Debugger
+// *  PROBLEM 2 >>> Using a Debugger
 // const calcTempRangeBug = function (temps1, temps2) {
 //   const temps = temps1.concat(temps2);
 //   console.log(temps);
@@ -142,14 +142,45 @@ const temperatures2 = [
 
 // calcTempRangeBug(temperatures1, temperatures2);
 
-// IDENTIFY
+// * IDENTIFY
 // Set breakpoint when values are being processed (Line 133 and 134). Found out that 0 is being considered as a value to be compared. 0 is not present in the array.
 
-// FIND
+// * FIND
 // Line 126/127
 
-// FIX
+// * FIX
 // Include values to be compared only present in the array. Instead of 0 for each, it should be temps[0]
 
-// PREVENT
+// * PREVENT
 // Error was repeated on line 127. I can include debugger command above.
+
+// * Coding Challenge
+// . Divide and Conquer:
+/**
+ * , Use a function to take in the array called printForecast
+ * , Use a for loop for the array.
+ * , For every iteration, so within the loop, I need to add (let) text to the final string.
+ * , Thus I need to set an empty string at the start.
+ * , Expected Output = For an array of 2 ([15, 12]), It will print:
+ * , " ... 15 Deg in 1 days...12 deg in 2 days"
+ * -- --------------------------------------------------------------------
+ * , TEST DATA 1: [17, 21, 23]
+ * , TEST DATA 2: [12, 5, -5, 0, 4]
+ * -- --------------------------------------------------------------------
+ * , (See, now I know exactly what to do :))
+ */
+
+// !! SOLUTION:
+const arr1 = [17, 21, 23];
+const arr2 = [12, 5, -5, 0, 4];
+
+const printForecast = function (arr) {
+  let stringTemp = '';
+  for (let temp = 1; temp < arr.length; temp++) {
+    stringTemp += ` ... ${arr[temp]}°C in ${temp} days`;
+  }
+  console.log(stringTemp);
+};
+
+printForecast(arr1);
+// console.log(printForecast(arr2));
